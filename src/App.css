@@ -7,8 +7,26 @@
     --text-clr-primary: #f1f5f9;
     --text-clr-secondary: #f3f4f6;
 
-    --clr-light: #a78bfa;
+    --clr-light: #7F4CF6;
 
     --clr-error: #dc2626;
     --clr-success: #15803d;
+}
+
+.btn--red{
+    background-color: #dc2626;
+    color: #ffffff;
+}
+
+.btn--red:hover{
+    background-color: #991b1b;
+}
+
+.btn--light{
+    background-color: var(--clr-light);
+    color: var(--clr-primary);
+}
+
+.btn--light:hover{
+    background-color: var(--clr-light);
 }
