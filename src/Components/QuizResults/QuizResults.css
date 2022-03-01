@@ -1,0 +1,23 @@
+.container__results{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.results{
+    font-family: var(--font-family-secondary);
+    width: 100%;
+    background-color: var(--clr-secondary);
+    padding: var(--padding-medium) 0;
+    border-radius: 20px;
+}
+
+.result__success{
+    color: var(--clr-light);
+}
+
+.result__error{
+    color: var(--clr-error);
+}
+
