@@ -1,4 +1,5 @@
 import React from 'react';
+import CategoryCard from '../../Components/CategoryCard/CategoryCard';
 import './HomePage.css'
 
 function HomePage() {
@@ -20,22 +21,10 @@ function HomePage() {
             <h2>Category</h2>
         </div>
         <div class="container__flex--center container__flex--wrap">
-            <div class="category--card margin--medium">
-                <img src="Images/quiz.jpg" />
-                <h3 class="category--title">Category</h3>
-            </div>
-            <div class="category--card margin--medium">
-                <img src="Images/quiz.jpg" />
-                <h3 class="category--title">Category</h3>
-            </div>
-            <div class="category--card margin--medium">
-                <img src="Images/quiz.jpg" />
-                <h3 class="category--title">Category</h3>
-            </div>
-            <div class="category--card margin--medium">
-                <img src="Images/quiz.jpg" />
-                <h3 class="category--title">Category</h3>
-            </div>
+            <CategoryCard />
+            <CategoryCard />
+            <CategoryCard />
+            <CategoryCard />
         </div>
         <div class="container__flex--center margin--medium">
             <a href="Pages/quizcategory.html"><button class="btn btn--outline">View All</button></a>
