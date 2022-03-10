@@ -1,10 +1,10 @@
 import React from 'react'
 
-function CategoryCard() {
+function CategoryCard({ category: {id, img, name}}) {
   return (
     <div class="category--card margin--medium">
-        <img src="Images/quiz.jpg" />
-        <h3 class="category--title">Category</h3>
+        <img src={img} />
+        <h3 class="category--title">{name}</h3>
     </div>
   )
 }

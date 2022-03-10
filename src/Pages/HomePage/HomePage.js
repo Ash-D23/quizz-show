@@ -1,8 +1,16 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import CategoryCard from '../../Components/CategoryCard/CategoryCard';
 import './HomePage.css'
 
+const categorydata = [{id: 1, img: 'Images/quiz.jpg', name: 'Movies'}, {id: 2, img: 'Images/quiz.jpg', name: 'Movies'}, {id: 3, img: 'Images/quiz.jpg', name: 'Movies'}, {id: 4, img: 'Images/quiz.jpg', name: 'Movies'}]
+
 function HomePage() {
+  const [category, setcategory] = useState([])
+
+  useEffect(() => {
+    setcategory(categorydata)
+  }, [])
+  
   return (
     <>
       <div class="container--50 container__flex--center padding--medium ">
@@ -21,10 +29,9 @@ function HomePage() {
             <h2>Category</h2>
         </div>
         <div class="container__flex--center container__flex--wrap">
-            <CategoryCard />
-            <CategoryCard />
-            <CategoryCard />
-            <CategoryCard />
+            {category?.map((item)=>{
+              return <CategoryCard category={item} />
+            })}
         </div>
         <div class="container__flex--center margin--medium">
             <a href="Pages/quizcategory.html"><button class="btn btn--outline">View All</button></a>
