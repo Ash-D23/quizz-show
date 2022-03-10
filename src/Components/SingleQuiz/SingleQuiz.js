@@ -1,6 +1,6 @@
 import React from 'react'
 
-function SingleQuiz() {
+function SingleQuiz({ quiz: {id, name, img, category} }) {
   return (
     <div class="card margin--medium">
         <div class="card__image--container">
