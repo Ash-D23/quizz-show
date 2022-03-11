@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 50%;
 }
 
 .results{
@@ -19,5 +20,15 @@
 
 .result__error{
     color: var(--clr-error);
+}
+
+.result--answers{
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .container__results{
+        width: 100%;
+    }
 }
 

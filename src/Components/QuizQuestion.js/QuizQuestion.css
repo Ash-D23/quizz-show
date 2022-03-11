@@ -4,7 +4,7 @@
 }
 
 .question__container{
-    max-width: 60%;
+    width: 50%;
 }
 
 .result__answer{
@@ -32,6 +32,10 @@
     background-color: var(--clr-primary);
 }
 
+.answer--selected{
+    background-color: var(--clr-primary-dark);
+}
+
 .answer--plain:hover{
     background-color: var(--clr-primary-dark);
 }
@@ -53,6 +57,6 @@
 
 @media only screen and (max-width: 600px) {
     .question__container{
-        max-width: 100%;
+        width: 100%;
     }
 }
