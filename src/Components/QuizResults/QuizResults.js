@@ -1,4 +1,5 @@
 import React from 'react';
+import { useQuizGameContext } from '../../Context/QuizGameContext';
 import './QuizResults.css';
 
 function ResultAnswer({totalquestions, questionnumber, question, quizoptions, answer, selectedanswer}){
@@ -15,17 +16,17 @@ function ResultAnswer({totalquestions, questionnumber, question, quizoptions, an
 
             <div class="container__answer margin--medium">
                 {
-                    quizoptions?.map((item, index)=>{
+                    quizoptions?.map(({ option, id})=>{
                         let optionstyle = null
-                        if(index===selectedanswer){
+                        if(id===selectedanswer){
                             optionstyle = selectedanswer===answer ? "answer--success" : "answer--wrong"
                         }
-                        if(index===answer){
+                        if(id===answer){
                             optionstyle = "answer--success"
                         }
                         return (
                             <div className={`answer ${optionstyle}`}>
-                                <p>{item}</p>
+                                <p>{option}</p>
                             </div>
                         )
                     })
@@ -35,9 +36,12 @@ function ResultAnswer({totalquestions, questionnumber, question, quizoptions, an
     )
 }
 
-function QuizResults({answers, selectedanswers, questions, options}) {
+function QuizResults() {
+
+    const { quizgamestate: {name, questions, answers, selectedanswers} } = useQuizGameContext()
     
     const CalculateScoreandShowResults = ()=>{
+        console.log(selectedanswers, answers)
         let finalscore = 0;
         answers.forEach((val, index)=>{
           finalscore = val === selectedanswers[index] ? finalscore+1 : finalscore
@@ -62,7 +66,7 @@ function QuizResults({answers, selectedanswers, questions, options}) {
 
                 {questions?.map((item, index)=>{
                     return (
-                        <ResultAnswer totalquestions={totalquestions} questionnumber={index} question={item} quizoptions={options[index]} answer={answers[index]} selectedanswer={selectedanswers[index]} />
+                        <ResultAnswer totalquestions={totalquestions} questionnumber={index} question={item.question} quizoptions={item.options} answer={answers[index]} selectedanswer={selectedanswers[index]} />
                     )
                 })}
             </div>
