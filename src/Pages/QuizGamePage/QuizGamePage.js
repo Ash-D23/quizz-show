@@ -1,20 +1,18 @@
 import React from 'react'
-import QuizGame2 from '../../Components/QuizGame/QuizGame2';
+import QuizGame from '../../Components/QuizGame/QuizGame';
 import {QuizGameProvider} from '../../Context/QuizGameContext'
 
-function QuizGame() {
+function QuizGamePage() {
 
   //  get id frm url and pass it
-
-
   return (
     <div>
       <QuizGameProvider>
-        <QuizGame2 gameid={23} />
+        <QuizGame gameid={23} />
       </QuizGameProvider>
       
     </div>
   )
 }
 
-export default QuizGame
+export default QuizGamePage

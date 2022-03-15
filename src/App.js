@@ -1,6 +1,6 @@
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
-import QuizGame from './Pages/QuizGame/QuizGame'
+import QuizGamePage from './Pages/QuizGamePage/QuizGamePage'
 import './App.css'
 
 
@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      <QuizGame />
+      <QuizGamePage />
       <Footer />
     </div>
   );
