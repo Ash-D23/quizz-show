@@ -1,5 +1,6 @@
 .navbar__title{
     font-family: var(--font-family-secondary);
+    margin: 0;
 }
 
 .navbar__item:hover{
