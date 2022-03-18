@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css'
 
 function Navbar() {
@@ -8,7 +9,7 @@ function Navbar() {
         <div className="navbar__container padding--medium">
             <div className="navbar__heading-container">
                 <div className="navbar__title">
-                    QuizzShow
+                    <Link to="/">QuizzShow</Link>
                 </div>
                 <div onClick={()=> setshowmenu(prev => !prev)} className="navbar__menu">
                     { !showmenu ? <i className="fas fa-bars icon__menu"></i> : <i className="fas fa-times icon__times"></i>}
@@ -17,10 +18,10 @@ function Navbar() {
             </div>
             <ul className={`navbar__list-container ${showmenu ? 'navbar__display': null}`}>
                 <li className="navbar__item">
-                    <a href="#">Home</a>
+                    <Link to="/">Home</Link>
                 </li>
                 <li className="navbar__item">
-                    <a href="Pages/quizcategory.html">Explore</a>
+                    <Link to="/category">Explore</Link>
                 </li>
             </ul>
         </div>

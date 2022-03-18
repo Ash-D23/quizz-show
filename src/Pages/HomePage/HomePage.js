@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import CategoryCard from '../../Components/CategoryCard/CategoryCard';
+import { Link } from 'react-router-dom';
 import './HomePage.css'
 
 const categorydata = [{id: 1, img: 'Images/quiz.jpg', name: 'Movies'}, {id: 2, img: 'Images/quiz.jpg', name: 'Movies'}, {id: 3, img: 'Images/quiz.jpg', name: 'Movies'}, {id: 4, img: 'Images/quiz.jpg', name: 'Movies'}]
@@ -20,7 +21,7 @@ function HomePage() {
                 Let's Begin the show
             </p>
             <div class="container__flex--center margin-tb--large">
-                <a href="Pages/quizcategory.html"><button class="btn btn--outline">Explore</button></a>
+                <Link to="/category"><button class="btn btn--outline">Explore</button></Link>
             </div>
         </div>
       </div>
@@ -34,7 +35,7 @@ function HomePage() {
             })}
         </div>
         <div class="container__flex--center margin--medium">
-            <a href="Pages/quizcategory.html"><button class="btn btn--outline">View All</button></a>
+            <Link to="/category"><button class="btn btn--outline">View All</button></Link>
         </div>
       </div>
     </>
