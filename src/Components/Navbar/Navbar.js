@@ -18,10 +18,10 @@ function Navbar() {
             </div>
             <ul className={`navbar__list-container ${showmenu ? 'navbar__display': null}`}>
                 <li className="navbar__item">
-                    <Link to="/">Home</Link>
+                    <Link to="/dashboard">Dashboard</Link>
                 </li>
                 <li className="navbar__item">
-                    <Link to="/category">Explore</Link>
+                    <Link to="/explore">Explore</Link>
                 </li>
             </ul>
         </div>

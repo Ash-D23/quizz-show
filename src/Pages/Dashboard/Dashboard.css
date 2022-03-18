@@ -1,0 +1,18 @@
+.stat__container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.stat{
+    font-family: var(--font-family-secondary);
+    width: max(25%, 20rem);
+    background-color: var(--clr-secondary);
+    padding: var(--padding-medium);
+    border-radius: 20px;
+    margin: 0 var(--margin-medium)
+}
+
+.stat p{
+    text-align: center;
+}

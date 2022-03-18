@@ -10,6 +10,8 @@ import UserProfile from './Pages/Userprofile/UserProfile'
 import { Routes, Route} from 'react-router-dom';
 
 import './App.css'
+import Dashboard from './Pages/Dashboard/Dashboard';
+import AllQuizPage from './Pages/AllQuizPage/AllQuizPage';
 
 
 function App() {
@@ -29,6 +31,9 @@ function App() {
         <Route path='/quizgame/:id' element={<QuizGamePage />} />
       </Routes>
       <Routes>
+        <Route path='/dashboard' element={<Dashboard />} />
+      </Routes>
+      <Routes>
         <Route path='/profile' element={<UserProfile />} />
       </Routes>
       <Routes>
@@ -36,6 +41,9 @@ function App() {
       </Routes>
       <Routes>
         <Route path='/signup' element={<SignUp />} />
+      </Routes>
+      <Routes>
+        <Route path='/explore' element={<AllQuizPage />} />
       </Routes>
       <Footer />
     </div>
