@@ -16,3 +16,12 @@
 .stat p{
     text-align: center;
 }
+
+.quiz--score{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--clr-light);
+    color: #ffffff;
+    padding: var(--padding-small)
+}

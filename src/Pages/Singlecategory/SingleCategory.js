@@ -10,7 +10,6 @@ function SingleCategory() {
 
   useEffect(() => {
      setquizes(quizdata)
-    
   }, [])
 
   return (

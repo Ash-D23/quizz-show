@@ -1,16 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function SingleQuiz({ quiz }) {
+function SingleQuiz({ game, result }) {
   return (
     <div class="card margin--medium">
-        <div class="card__image--container">
-            <img class="card__image " src="../Images/quiz.jpg" />
+        <div class="card__image--container container--relative">
+          <img class="card__image " src="../Images/quiz.jpg" />
+          { result ? <p class="text--large quiz--score">Score: 100</p> : null}
         </div>
         <div class="card__body background--light padding--medium">
             
             <div class="container__flex--spacebetween">
-                <h2 class="card__title text--large">Quiz Name</h2>
-                <a href="quizrules.html"><button class="btn btn--red">Play Now</button></a>
+                <h2 class="card__title text--large">{game?.name}</h2>
+                <Link to={"/quizgame/"+game?.id}>
+                  <button class="btn btn--red">
+                    {result ? 'Play Again' : 'Play Now'}
+                  </button></Link>
             </div>
 
         </div> 

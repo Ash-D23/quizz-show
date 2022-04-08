@@ -1,16 +1,26 @@
 import React, {useState, useEffect} from 'react';
 import CategoryCard from '../../Components/CategoryCard/CategoryCard';
 import { Link } from 'react-router-dom';
+import { db } from '../../firebase';
 import './HomePage.css'
-
-const categorydata = [{id: 1, img: 'Images/quiz.jpg', name: 'Movies'}, {id: 2, img: 'Images/quiz.jpg', name: 'Movies'}, {id: 3, img: 'Images/quiz.jpg', name: 'Movies'}, {id: 4, img: 'Images/quiz.jpg', name: 'Movies'}]
 
 function HomePage() {
   const [category, setcategory] = useState([])
 
   useEffect(() => {
-    setcategory(categorydata)
+    (async function(){
+      try{
+        const categories = db.ref('/Categories');
+        const snapshot = await categories.once('value');
+        setcategory(snapshot.val())
+      }catch(err){
+        console.error(err)
+      }
+    })()
+    
   }, [])
+
+  console.log(category)
   
   return (
     <>
@@ -31,7 +41,7 @@ function HomePage() {
         </div>
         <div class="container__flex--center container__flex--wrap">
             {category?.map((item)=>{
-              return <CategoryCard category={item} />
+              return <CategoryCard key={item.id} category={item} />
             })}
         </div>
         <div class="container__flex--center margin--medium">

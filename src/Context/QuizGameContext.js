@@ -13,7 +13,8 @@ const quizgameinitialstate = {
     currentquestion: 0,
     currentselectedoption: null,
     selectedanswers: [],
-    showresults: false
+    showresults: false, 
+    gamestate: "loading"
 }
 
 const quizgamereducerfn = (state, action)=> {
@@ -29,6 +30,8 @@ const quizgamereducerfn = (state, action)=> {
         case "submitanswerandfinish":
             return { ...state, selectedanswers: [...state.selectedanswers, state.currentselectedoption], 
                 currentselectedoption: null, showresults: true}
+        case "gamestate":
+            return { ...state, gamestate: action.payload.gamestate}
         case "default":
             return state
     }

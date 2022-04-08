@@ -6,7 +6,6 @@ function useTimer(initial = 10) {
     
     const starttimer = () => {
         const timerid = setInterval(()=>{
-          console.log(timerid)
           settime(prev => prev-1)
         }, 1000)
         settimerid(timerid)

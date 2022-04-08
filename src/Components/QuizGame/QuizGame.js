@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useQuizGameContext } from '../../Context/QuizGameContext';
 import QuizQuestion from '../QuizQuestion.js/QuizQuestion';
 import QuizResults from '../QuizResults/QuizResults';
+import { db } from '../../firebase';
 
 const quizgamedata = {id: 23, name: 'Sherlock', questions: 
 [
@@ -15,11 +16,17 @@ function QuizGame({ gameid }) {
 
   const { quizgamestate: {showresults, loading}, quizgamedispatch, timerobj: {starttimer} } = useQuizGameContext()
 
+  const loadGame = async () => {
+      const categories = db.ref('/Games/'+gameid);
+      const snapshot = await categories.once('value');
+      const value = snapshot.val();
+      console.log(value) 
+  }
+
   useEffect(()=>{
-    // from gameid set quiz data
     quizgamedispatch({ type: "setquizdata", payload: quizgamedata})
     starttimer()
-
+    loadGame()
   }, [])
 
 

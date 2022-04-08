@@ -16,7 +16,41 @@
     display: none;
 }
 
+.search__container{
+    display: flex;
+    min-width: 10rem;
+    border: 1px solid var(--clr-grey);
+    padding: var(--padding-small);
+    border-radius: 5px;
+}
+
+.search__input{
+    border: none;
+    padding: var(--padding-small);
+    font-size: 1.6rem;
+    background: transparent;
+    color: #ffffff;
+}
+
+.search__input:focus{
+    outline: none;
+}
+
+.mobile__search__container{
+    display: none;
+    border-bottom: 1px solid var(--clr-grey);
+    padding: var(--padding-small)
+}
+
 @media only screen and (max-width: 600px) {
+
+    .search__container{
+        display: none;
+    }
+
+    .mobile__search__container{
+        display: block;
+    }
 
     .navbar__item:hover{
         color: var(--clr-primary);

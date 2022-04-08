@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 const AuthContext = createContext()
 
@@ -13,24 +14,4 @@ const AuthProvider = ({children}) => {
     </AuthContext.Provider>
 }
 
-// hook
-
-const useAuth = () => {
-    const [user, setuser] = useState(null)
-
-    useEffect(()=>{
-        // check local storage and set user
-    }, [])
-
-    const signin = () => {
-        setuser("bruce wayne")
-    }
-
-    const signout = () => {
-        setuser(null)
-    }
-
-    return { user, signin, signout}
-}
-
-export {AuthContext, useAuthContext, AuthProvider}
+export { useAuthContext, AuthProvider}
