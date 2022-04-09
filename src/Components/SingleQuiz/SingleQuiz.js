@@ -6,7 +6,7 @@ function SingleQuiz({ game, result }) {
     <div class="card margin--medium">
         <div class="card__image--container container--relative">
           <img class="card__image " src="../Images/quiz.jpg" />
-          { result ? <p class="text--large quiz--score">Score: 100</p> : null}
+          { result ? <p class="text--large quiz--score">Score: {game?.score}</p> : null}
         </div>
         <div class="card__body background--light padding--medium">
             
