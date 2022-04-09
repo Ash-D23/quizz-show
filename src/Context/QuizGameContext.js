@@ -1,6 +1,9 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import useTimer from "../hooks/timer"
-const QuizGameContext = createContext()
+import { db } from '../firebase';
+import { useAuthContext } from "./AuthContext/AuthContext";
+
+const QuizGameContext = createContext();
 
 const useQuizGameContext = () => useContext(QuizGameContext)
 
@@ -20,16 +23,16 @@ const quizgameinitialstate = {
 const quizgamereducerfn = (state, action)=> {
     switch (action.type){
         case "setquizdata":
-            return {...state, id: action.payload.id, name: action.payload.name, questions: action.payload.questions, 
-                answers: action.payload.answers}
+            return {...state, id: action.payload.id, name: action.payload.name, questions: action.payload.data.questions, 
+                answers: action.payload.data.answers, gamestate: "rules"}
         case "selecttanswer":
                 return { ...state, currentselectedoption: action.payload }
         case "submitanswer":
                 return { ...state, selectedanswers: [...state.selectedanswers, state.currentselectedoption], 
                     currentselectedoption: null, currentquestion: state.currentquestion+1}
         case "submitanswerandfinish":
-            return { ...state, selectedanswers: [...state.selectedanswers, state.currentselectedoption], 
-                currentselectedoption: null, showresults: true}
+            return { ...state, selectedanswers: action.payload.selectedanswers, 
+                currentselectedoption: null, showresults: true, gamestate: 'results', score: action.payload.score}
         case "gamestate":
             return { ...state, gamestate: action.payload.gamestate}
         case "default":
@@ -41,7 +44,9 @@ const QuizGameProvider = ({children}) => {
 
     const [ quizgamestate, quizgamedispatch ] = useReducer(quizgamereducerfn, quizgameinitialstate)
 
-    const {time, timerid, starttimer, stoptimer, resettimer} = useTimer(10)
+    const {time, starttimer, stoptimer, resettimer} = useTimer(10)
+
+    const { user } = useAuthContext()
 
     useEffect(()=>{
         if(time<=0){
@@ -49,9 +54,38 @@ const QuizGameProvider = ({children}) => {
         }
     }, [time])
 
+    const CalculateScoreandShowResults = async ()=>{
+        quizgamedispatch({ type: 'gamestate', payload: { gamestate: 'loading'} })
+        const { answers } = quizgamestate
+        const finalselectedanswers = [...quizgamestate.selectedanswers, quizgamestate.currentselectedoption]
+        let finalscore = 0;
+        answers.forEach((val, index)=>{
+          finalscore = val === finalselectedanswers[index] ? finalscore+1 : finalscore
+        })
+        const totalquestions = quizgamestate.questions.length
+        finalscore = (finalscore/totalquestions)*100
+        try{
+            const resultref = db.ref(`/results/`+user.uid);
+
+            const item = {
+                uid: user.uid,
+                score: finalscore,
+                name: quizgamestate.name,
+                id: quizgamestate.id
+            }
+
+            await resultref.push().set(item)
+
+            quizgamedispatch({type:'submitanswerandfinish', 
+            payload: { selectedanswers: finalselectedanswers, score: finalscore}})
+        }catch(err){
+            console.error(err)
+        }
+    }
+
     const submitanswer = ()=> {
         if(quizgamestate.currentquestion === quizgamestate.questions.length-1){
-            quizgamedispatch({ type: 'submitanswerandfinish'})
+            CalculateScoreandShowResults()
             stoptimer()
         }else{
             quizgamedispatch({ type: 'submitanswer'})

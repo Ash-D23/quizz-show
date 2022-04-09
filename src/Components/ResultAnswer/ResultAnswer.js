@@ -1,6 +1,7 @@
 
 
 function ResultAnswer({totalquestions, questionnumber, question, quizoptions, answer, selectedanswer}){
+    
     return (
         <div class="result__answer border--grey padding--medium margin-tb--medium">   
             <div class="container__flex--spacebetween question__score">
@@ -14,17 +15,17 @@ function ResultAnswer({totalquestions, questionnumber, question, quizoptions, an
 
             <div class="container__answer margin--medium">
                 {
-                    quizoptions?.map(({ option, id})=>{
+                    quizoptions?.map((item, index)=>{
                         let optionstyle = null
-                        if(id===selectedanswer){
+                        if(index===selectedanswer){
                             optionstyle = selectedanswer===answer ? "answer--success" : "answer--wrong"
                         }
-                        if(id===answer){
+                        if(index===answer){
                             optionstyle = "answer--success"
                         }
                         return (
                             <div className={`answer ${optionstyle}`}>
-                                <p>{option}</p>
+                                <p>{item}</p>
                             </div>
                         )
                     })

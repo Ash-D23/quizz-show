@@ -1,7 +1,7 @@
 import React from 'react';
 import './QuizRules.css';
 
-function QuizRules() {
+function QuizRules({ start }) {
   return (
     <div class="container__flex--center rules padding--large">
         <div class="rules__container border--grey padding--medium">
@@ -14,7 +14,7 @@ function QuizRules() {
             </ul>
 
             <div class="container__flex--center margin--medium">
-                <a href="quizquestions.html"><button class="btn btn--light">Accept</button></a>
+                <button onClick={()=> start()} class="btn btn--light">Accept</button>
             </div>
         </div>
     </div>

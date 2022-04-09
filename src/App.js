@@ -28,9 +28,6 @@ function App() {
     //   console.log(data.val())
     // })
 
-
-
-
   }, [])
 
   const { user } = useAuthContext()

@@ -5,12 +5,12 @@ import './QuizQuestion.css'
 function QuizQuestion() {
 
   const { quizgamestate: {name, currentquestion, questions, currentselectedoption}, 
-  quizgamemethods: {submitanswer, selectanswer},
+    quizgamemethods: {submitanswer, selectanswer},
   quizgamedispatch , 
   timerobj: {time}} = useQuizGameContext()
 
   const totalquestions = questions.length
-  const question = questions.length ? questions[currentquestion]?.question : []
+  const question = questions.length ? questions[currentquestion]?.name : null
   const options =  questions.length ? questions[currentquestion]?.options : []
 
   return (
@@ -28,10 +28,10 @@ function QuizQuestion() {
             </div>
 
             <div class="container__answer margin--medium">
-                {options?.map(({ option, id})=>{
+                {options?.map((item, index)=>{
                     return (
-                    <div onClick={()=> selectanswer(id)} className={`answer ${currentselectedoption===id ? `answer--selected` : 'answer--plain'}`}>
-                        <p>{option}</p>
+                    <div onClick={()=> selectanswer(index)} className={`answer ${currentselectedoption===index ? `answer--selected` : 'answer--plain'}`}>
+                        <p>{item}</p>
                     </div> )
                 })}
             </div>
